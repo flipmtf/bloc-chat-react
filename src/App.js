@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Route, Link } from 'react-router-dom';
 import './App.css';
 import * as firebase from 'firebase';
 import RoomList from './components/RoomList';
@@ -20,7 +19,7 @@ class App extends Component {
     return (
       <div className="App">
         <main>
-          <Route exact path="/" component={RoomList} />
+          <RoomList firebase= { firebase } />
         </main>
       </div>
     );
