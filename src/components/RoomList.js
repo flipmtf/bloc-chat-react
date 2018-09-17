@@ -11,6 +11,7 @@ class RoomList extends Component {
 
     this.roomsRef = this.props.firebase.database().ref('rooms');
 
+    this.handleNewRoom = this.handleNewRoom.bind(this);
   }
 
   componentDidMount() {
@@ -22,7 +23,7 @@ class RoomList extends Component {
   }
 
   handleNewRoom(newRoomName) {
-    this.setState({value: newRoomName.target.value});
+    this.setState({ value: newRoomName.target.value });
   }
 
   createRoom() {
@@ -34,13 +35,17 @@ class RoomList extends Component {
   render() {
     return(
       <div>
-        {
-          this.state.rooms.map( (rooms, index) =>
-            <tr className="chatRooms" key={index}>
-              <td>{rooms.name}</td>
-            </tr>
-          )
-        }
+        <table>
+          <tbody>
+            {
+              this.state.rooms.map( (rooms, index) =>
+                <tr className="chatRooms" key={index}>
+                  <td>{rooms.name}</td>
+                </tr>
+              )
+            }
+          </tbody>
+        </table>
         <form onSubmit={this.state.createRoom}>
           <label>
             New Room Name:
