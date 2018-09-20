@@ -26,7 +26,8 @@ class RoomList extends Component {
     this.setState({ value: newRoomName.target.value });
   }
 
-  createRoom() {
+  createRoom(e) {
+    e.preventDefault();
     this.roomsRef.push({
       name: this.state.value
     });
@@ -46,7 +47,7 @@ class RoomList extends Component {
             }
           </tbody>
         </table>
-        <form onSubmit={this.state.createRoom}>
+        <form onSubmit={(e) => this.createRoom(e)}>
           <label>
             New Room Name:
             <input type="text" name={this.state.value} onChange={this.handleNewRoom} />
