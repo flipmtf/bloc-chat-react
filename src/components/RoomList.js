@@ -28,9 +28,11 @@ class RoomList extends Component {
 
   createRoom(e) {
     e.preventDefault();
+    if (!this.state.value) { return }
     this.roomsRef.push({
       name: this.state.value
     });
+    e.target.reset();
   }
 
   render() {
