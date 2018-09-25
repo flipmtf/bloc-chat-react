@@ -18,4 +18,18 @@ class MessageList extends Component {
       this.setState({ messages:this.state.messages.concat( message ) })
     });
   }
+
+  render() {
+    return(
+      <div>
+        <form>
+          <label>
+            New Message:
+            <input type="text" name="New Message" />
+          </label>
+          <input type="submit" name="Message Submit" />
+        </form>
+      </div>
+    )
+  }
 }
