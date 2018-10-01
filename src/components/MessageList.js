@@ -29,8 +29,8 @@ class MessageList extends Component {
     this.messagesRef.push({
       content: this.state.value,
       username: '',
-      sentAt: this.props.firebase.database.ServerValue.TIMESTAMP
-      roomId: -1 (fill with info from prop from app component)
+      sentAt: this.props.firebase.database.ServerValue.TIMESTAMP,
+      roomId: -1
     });
     e.target.reset();
   }
@@ -49,3 +49,5 @@ class MessageList extends Component {
     )
   }
 }
+
+export default MessageList
