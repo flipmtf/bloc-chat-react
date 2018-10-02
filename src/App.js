@@ -22,26 +22,27 @@ class App extends Component {
     this.state = {
 
     }
+
+    this.roomsRef = this.props.firebase.database().ref('rooms');
+  }
+
+  handleRoomClick(){
+
   }
 
   activeRoom() {
-    this.RoomList.rooms.map( (rooms, index) =>
-
-  handleRoomChange
-
+    
   }
 
   render() {
     return (
       <div className="App">
         <main>
-          <RoomList
-            firebase = { firebase }
-            activeRoom={() => this.activeRoom()}
-          />
-          <MessageList
-            firebase = { firebase }
-          />
+          {
+            this.RoomList.map( (rooms, index) =>
+              <RoomList className="rooms" key={index} onClick={() => this.handleRoomClick(rooms)} firebase = { firebase } />
+          )}
+          <MessageList firebase = { firebase } />
         </main>
       </div>
     );
