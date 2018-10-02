@@ -19,19 +19,25 @@ class App extends Component {
   constructor(props) {
     super(props);
 
+    var rooms = this.firebase.RoomList.props.rooms
+
     this.state = {
-
+      rooms: rooms,
+      currentRoom: null,
     }
-
-    this.roomsRef = this.props.firebase.database().ref('rooms');
   }
 
-  handleRoomClick(){
-
+  setActiveRoom(room) {
+    this.setState({ currentRoom: room });
   }
 
-  activeRoom() {
-    
+  handleRoomClick(room) {
+    const isActiveRoom = this.state.currentRoom === room;
+    if (isActiveRoom) {
+      return this.props.MessageList.roomId
+    } else {
+      return this.props.MessageList
+    }
   }
 
   render() {
@@ -39,7 +45,7 @@ class App extends Component {
       <div className="App">
         <main>
           {
-            this.RoomList.map( (rooms, index) =>
+            this.state.rooms.map( (rooms, index) =>
               <RoomList className="rooms" key={index} onClick={() => this.handleRoomClick(rooms)} firebase = { firebase } />
           )}
           <MessageList firebase = { firebase } />
