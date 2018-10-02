@@ -38,12 +38,13 @@ class RoomList extends Component {
   render() {
     return(
       <div>
+        <h2>{this.props.activeRoom ? this.props.activeRoom.name: ""}</h2>
         <table>
           <tbody>
             {
-              this.state.rooms.map( (rooms, index) =>
+              this.state.rooms.map( (room, index) =>
                 <tr className="chatRooms" key={index}>
-                  <td>{rooms.name}</td>
+                  <td onClick={() => this.props.setActiveRoom(room)}>{room.name}</td>
                 </tr>
               )
             }

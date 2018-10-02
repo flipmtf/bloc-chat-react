@@ -30,7 +30,7 @@ class MessageList extends Component {
       content: this.state.value,
       username: '',
       sentAt: this.props.firebase.database.ServerValue.TIMESTAMP,
-      roomId: -1
+      roomId: this.props.activeRoom ? this.props.activeRoom.key: -1,
     });
     e.target.reset();
   }
@@ -38,13 +38,16 @@ class MessageList extends Component {
   render() {
     return(
       <div>
-        <form onSubmit={(e) => this.onSubmit(e)} >
+        {this.state.messages.map( (message, index) => (this.props.setActiveRoom.filter(this.props.activeRoom.key)
+          <div key={index}>{message.content}</div>
+        ))}
+        {this.props.activeRoom && (<form onSubmit={(e) => this.onSubmit(e)} >
           <label>
             New Message:
             <input type="text" name={this.state.value} onChange={(e) => this.onUpdate(e)}/>
           </label>
           <input type="submit" name="Submit" />
-        </form>
+        </form>)}
       </div>
     )
   }
