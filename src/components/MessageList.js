@@ -39,7 +39,7 @@ class MessageList extends Component {
     return(
       <div>
         {this.state.messages.map( (message, index) => (
-          <div key={index}>this.state.messages.filter({message.content})</div>
+          <div key={index}>{message.content}</div>
         ))}
         {this.props.activeRoom && (<form onSubmit={(e) => this.onSubmit(e)} >
           <label>
