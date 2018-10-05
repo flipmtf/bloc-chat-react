@@ -35,12 +35,26 @@ class MessageList extends Component {
     e.target.reset();
   }
 
+  setRoomMessages(message) {
+    this.setState({ message: this.props.setActiveRoom });
+  }
+
   render() {
     return(
       <div>
-        {this.state.messages.map( (message, index) => (
-          <div key={index}>{message.content}</div>
-        ))}
+        {this.state.messages
+          .map( (message, index) => (
+            <div key={index}>{message.content}</div>
+          ))
+          .filter( message => (
+            {message.roomId === this.props.activeRoom && (
+              return message
+            )}
+            {message.roomId !== this.props.activeRoom && (
+              return " "
+            )}
+          ))
+        }
         {this.props.activeRoom && (<form onSubmit={(e) => this.onSubmit(e)} >
           <label>
             New Message:
