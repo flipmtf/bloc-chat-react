@@ -10,6 +10,7 @@ class MessageList extends Component {
     }
 
     this.messagesRef = this.props.firebase.database().ref('messages');
+    this.roomsRef = this.props.firebase.database().ref('rooms');
   }
 
   componentDidMount() {
@@ -35,10 +36,6 @@ class MessageList extends Component {
     e.target.reset();
   }
 
-  setRoomMessages(message) {
-    this.setState({ message: this.props.setActiveRoom });
-  }
-
   render() {
     return(
       <div>
@@ -46,8 +43,8 @@ class MessageList extends Component {
           .map( (message, index) => (
             <div key={index}>{message.content}</div>
           ))
-          .filter( (message) =>
-            <div className="messages">
+          .filter( message => (
+            <div className="message">
               {this.props.activeRoom.key === message.roomId && (
                 <div>{message.content}</div>
               )}
@@ -55,7 +52,7 @@ class MessageList extends Component {
                 <div></div>
               )}
             </div>
-          )
+          ))
         }
         {this.props.activeRoom && (<form onSubmit={(e) => this.onSubmit(e)} >
           <label>
