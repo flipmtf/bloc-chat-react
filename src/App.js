@@ -21,7 +21,7 @@ class App extends Component {
 
     this.state = {
       rooms: [],
-      currentRoom: null,
+      currentRoom: {},
     }
   }
 

@@ -40,18 +40,10 @@ class MessageList extends Component {
     return(
       <div>
         {this.state.messages
+          .filter( message => (this.props.activeRoom.key === message.roomId
+          ))
           .map( (message, index) => (
             <div key={index}>{message.content}</div>
-          ))
-          .filter( message => (
-            <div className="message">
-              {this.props.activeRoom.key === message.roomId && (
-                <div>{message.content}</div>
-              )}
-              {this.props.activeRoom.key !== message.roomId && (
-                <div></div>
-              )}
-            </div>
           ))
         }
         {this.props.activeRoom && (<form onSubmit={(e) => this.onSubmit(e)} >
