@@ -29,7 +29,7 @@ class MessageList extends Component {
     e.preventDefault();
     this.messagesRef.push({
       content: this.state.value,
-      username: '',
+      username: this.props.user ? this.props.user.displayName: "Guest",
       sentAt: this.props.firebase.database.ServerValue.TIMESTAMP,
       roomId: this.props.activeRoom ? this.props.activeRoom.key: -1,
     });
@@ -43,7 +43,7 @@ class MessageList extends Component {
           .filter( message => (this.props.activeRoom.key === message.roomId
           ))
           .map( (message, index) => (
-            <div key={index}>{message.content}</div>
+            <div key={index}>From {message.username}: {message.content}</div>
           ))
         }
         {this.props.activeRoom && (<form onSubmit={(e) => this.onSubmit(e)} >
