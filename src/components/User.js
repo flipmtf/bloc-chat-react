@@ -33,13 +33,18 @@ class User extends Component {
     });
   }
 
+
   render() {
     let authButton = this.props.user ?
       <button onClick={this.logout}>Log Out</button> :
       <button onClick={this.login}>Log In</button>
+    let showUser = this.props.user ?
+      <div>Current Username: {this.props.user.displayName}</div> :
+      <div>Guest</div>
     return(
       <div>
         {authButton}
+        {showUser}
       </div>
     );
   }
